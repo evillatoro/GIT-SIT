@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     var annotations: [AnnotationPin] = []
     var resultSearchController:UISearchController? = nil
     var selectedPin:Building? = nil
+    var building_id = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,8 +95,9 @@ class MapViewController: UIViewController {
                         let address = building.address!
                         let latitude = (building.latitude! as NSString).doubleValue
                         let longitude = (building.longitude! as NSString).doubleValue
+                        let b_id = building.b_id!
                         let pin = AnnotationPin(title: buildingName, address: address,
-                                                    coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                                                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), b_id: b_id)
                         self.annotations.append(pin)
                     }
                 }
@@ -159,6 +161,23 @@ extension MapViewController: MKMapViewDelegate {
         
         return nil
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? AnnotationPin {
+            getBuildingInfoFromApi(b_id: annotation.b_id!)
+        }
+    }
+    
+    func getBuildingInfoFromApi(b_id: String) {
+        building_id = b_id
+        performSegue(withIdentifier: "toBuildingInfo", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let listOfProductsViewController = segue.destination as! BuildingInfoController
+        listOfProductsViewController.b_id = building_id
+    }
 
 }
 
@@ -175,11 +194,12 @@ extension MapViewController: HandleMapSearch {
         let address = building.address!
         let latitude = (building.latitude! as NSString).doubleValue
         let longitude = (building.longitude! as NSString).doubleValue
+        let b_id = building.b_id!
         
         resultSearchController?.searchBar.text = buildingName
         
         let pin = AnnotationPin(title: buildingName, address: address,
-                                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), b_id: b_id)
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(pin.coordinate,
                                                                   regionRadius / 4, regionRadius / 4)

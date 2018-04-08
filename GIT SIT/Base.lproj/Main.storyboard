@@ -33,6 +33,7 @@
                     <navigationItem key="navigationItem" id="c0N-cW-kJI"/>
                     <connections>
                         <outlet property="mapView" destination="4qd-Qz-Mxz" id="bpM-eE-Rgy"/>
+                        <segue destination="F8F-7Q-sPs" kind="show" identifier="toBuildingInfo" id="k77-8A-cCN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyy-b1-xpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,6 +47,21 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1960.8" y="133.5832083958021"/>
+        </scene>
+        <!--Building Info Controller-->
+        <scene sceneID="V4x-xe-HRt">
+            <objects>
+                <viewController id="F8F-7Q-sPs" customClass="BuildingInfoController" customModule="GIT_SIT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p3t-aJ-kc8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Auf-gd-66H"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQg-bV-M0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1961" y="848"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="hO6-G8-NAY">

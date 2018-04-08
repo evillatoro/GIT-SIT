@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5792B0BE206C2E9A0046C9D0 /* BuildingInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */; };
 		57CB9E822043388700926FEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9E812043388700926FEC /* AppDelegate.swift */; };
 		57CB9E872043388700926FEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57CB9E852043388700926FEC /* Main.storyboard */; };
 		57CB9E892043389000926FEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57CB9E882043389000926FEC /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfoController.swift; sourceTree = "<group>"; };
 		57CB9E7E2043388700926FEC /* GIT SIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GIT SIT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57CB9E812043388700926FEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57CB9E862043388700926FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				57CB9EB420435D3900926FEC /* MapViewController.swift */,
 				57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */,
+				5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				57FAAADA2044BA6C005AD32A /* LocationSearchTable.swift in Sources */,
 				57CB9E822043388700926FEC /* AppDelegate.swift in Sources */,
 				57CB9EB520435D3900926FEC /* MapViewController.swift in Sources */,
+				5792B0BE206C2E9A0046C9D0 /* BuildingInfoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
