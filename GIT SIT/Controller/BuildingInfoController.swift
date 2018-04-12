@@ -10,13 +10,26 @@ import UIKit
 
 class BuildingInfoController: UIViewController {
     
+    @IBOutlet weak var floor1: UILabel!
+    @IBOutlet weak var floor2: UILabel!
+    @IBOutlet weak var floor3: UILabel!
+    @IBOutlet weak var floor4: UILabel!
+    @IBOutlet weak var floor5: UILabel!
+    @IBOutlet weak var building_name: UILabel!
+    @IBOutlet weak var building_address: UILabel!
     var b_id = String()
     var building = [Building()]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBuildingInfoFromApi(b_id: b_id)
-        getbuildingOccupancyFromAPi(b_id: b_id)
+        print(building[0].name!)
+        building_name.text = building[0].name!
+        building_address.text = building[0].address!
+        getbuildingOccupancyFromAPiFloor1(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor2(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor3(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor4(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor5(b_id: b_id)
         
 
         // Do any additional setup after loading the view.
@@ -27,36 +40,74 @@ class BuildingInfoController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getBuildingInfoFromApi(b_id: String) {
-        print(b_id)
-                let jsonUrlString = "https://m.gatech.edu/api/gtplaces/buildings_id/\(b_id)"
-                guard let url = URL(string: jsonUrlString) else { return }
+//    func getBuildingInfoFromApi(b_id: String) {
+//        print(b_id)
+//                let jsonUrlString = "https://m.gatech.edu/api/gtplaces/buildings_id/\(b_id)"
+//                guard let url = URL(string: jsonUrlString) else { return }
+//
+//                URLSession.shared.dataTask(with: url) { (data, response, err) in
+//                    guard let data = data else { return }
+//
+//                    do {
+//
+//                        let decoder = JSONDecoder()
+//
+//                        // put try because .decode could throw a potential error
+//                        self.building = try decoder.decode([Building].self, from: data)
+//
+//                        DispatchQueue.main.async {
+//                            print(self.building[0].name)
+//                        }
+//                    } catch let jsonErr {
+//                        print("Error serializing json:", jsonErr, "\n")
+//                    }
+//                    }.resume()
+//    }
+    
+    func getbuildingOccupancyFromAPiFloor1(b_id: String) {
+        let json: [String: Any] = ["location-id": b_id,
+                                   "floor": "1"]
+//        let json: [String: Any] = ["location-id": b_id,
+//                                   "datetime": "2015-01-09 22:54:37",
+//                                   "floor": "2"]
         
-                URLSession.shared.dataTask(with: url) { (data, response, err) in
-                    guard let data = data else { return }
-        
-                    do {
-        
-                        let decoder = JSONDecoder()
-        
-                        // put try because .decode could throw a potential error
-                        self.building = try decoder.decode([Building].self, from: data)
-        
-                        DispatchQueue.main.async {
-                            print(self.building[0].name)
-                        }
-                    } catch let jsonErr {
-                        print("Error serializing json:", jsonErr, "\n")
-                    }
-                    }.resume()
+        let url = URL(string: "https://git-sit.herokuapp.com/get-current-occupancy")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+                
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
+                print(occupancy);
+                DispatchQueue.main.async {
+                    self.floor1.text = String(occupancy) + "/50"
+                }
+            }
+        }
+        task.resume()
     }
     
-    func getbuildingOccupancyFromAPi(b_id: String) {
+    func getbuildingOccupancyFromAPiFloor2(b_id: String) {
         let json: [String: Any] = ["location-id": b_id,
-                                   "datetime": "2015-01-09 22:54:37",
                                    "floor": "2"]
+        //        let json: [String: Any] = ["location-id": b_id,
+        //                                   "datetime": "2015-01-09 22:54:37",
+        //                                   "floor": "2"]
         
-        let url = URL(string: "https://git-sit.herokuapp.com/get-occupancy-date")!
+        let url = URL(string: "https://git-sit.herokuapp.com/get-current-occupancy")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -74,6 +125,114 @@ class BuildingInfoController: UIViewController {
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
+            if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
+                print(occupancy);
+                DispatchQueue.main.async {
+                    self.floor2.text = String(occupancy) + "/250"
+                }
+            }
+        }
+        task.resume()
+    }
+    func getbuildingOccupancyFromAPiFloor3(b_id: String) {
+        let json: [String: Any] = ["location-id": b_id,
+                                   "floor": "3"]
+        //        let json: [String: Any] = ["location-id": b_id,
+        //                                   "datetime": "2015-01-09 22:54:37",
+        //                                   "floor": "2"]
+        
+        let url = URL(string: "https://git-sit.herokuapp.com/get-current-occupancy")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
+                print(occupancy);
+                DispatchQueue.main.async {
+                    self.floor3.text = String(occupancy) + "/200"
+                }
+            }
+        }
+        task.resume()
+    }
+    func getbuildingOccupancyFromAPiFloor4(b_id: String) {
+        let json: [String: Any] = ["location-id": b_id,
+                                   "floor": "4"]
+        //        let json: [String: Any] = ["location-id": b_id,
+        //                                   "datetime": "2015-01-09 22:54:37",
+        //                                   "floor": "2"]
+        
+        let url = URL(string: "https://git-sit.herokuapp.com/get-current-occupancy")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
+                print(occupancy);
+                DispatchQueue.main.async {
+                    self.floor4.text = String(occupancy) + "/160"
+                }
+            }
+        }
+        task.resume()
+    }
+    func getbuildingOccupancyFromAPiFloor5(b_id: String) {
+        let json: [String: Any] = ["location-id": b_id,
+                                   "floor": "5"]
+        //        let json: [String: Any] = ["location-id": b_id,
+        //                                   "datetime": "2015-01-09 22:54:37",
+        //                                   "floor": "2"]
+        
+        let url = URL(string: "https://git-sit.herokuapp.com/get-current-occupancy")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
+                print(occupancy);
+                DispatchQueue.main.async {
+                    self.floor5.text = String(occupancy) + "/75"
+                }
+            }
         }
         task.resume()
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57715655207ADE4E002E45F6 /* Occupancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57715654207ADE4E002E45F6 /* Occupancy.swift */; };
 		5792B0BE206C2E9A0046C9D0 /* BuildingInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */; };
 		57CB9E822043388700926FEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9E812043388700926FEC /* AppDelegate.swift */; };
 		57CB9E872043388700926FEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57CB9E852043388700926FEC /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57715654207ADE4E002E45F6 /* Occupancy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Occupancy.swift; sourceTree = "<group>"; };
 		5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfoController.swift; sourceTree = "<group>"; };
 		57CB9E7E2043388700926FEC /* GIT SIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GIT SIT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57CB9E812043388700926FEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				57CB9EB220433D4B00926FEC /* Building.swift */,
 				57FAAAD720448885005AD32A /* AnnotationPin.swift */,
+				57715654207ADE4E002E45F6 /* Occupancy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CB9EB320433D4B00926FEC /* Building.swift in Sources */,
+				57715655207ADE4E002E45F6 /* Occupancy.swift in Sources */,
 				57FAAAD820448885005AD32A /* AnnotationPin.swift in Sources */,
 				57FAAADA2044BA6C005AD32A /* LocationSearchTable.swift in Sources */,
 				57CB9E822043388700926FEC /* AppDelegate.swift in Sources */,
