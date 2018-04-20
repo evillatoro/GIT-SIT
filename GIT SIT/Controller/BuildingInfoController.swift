@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Charts
 
 class BuildingInfoController: UIViewController {
+    
+    var test = LineChartData()
     
     @IBOutlet weak var floor1: UILabel!
     @IBOutlet weak var floor2: UILabel!

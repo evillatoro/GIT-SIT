@@ -1,0 +1,6 @@
+framework module Pods_GIT_SITUITests {
+  umbrella header "Pods-GIT SITUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

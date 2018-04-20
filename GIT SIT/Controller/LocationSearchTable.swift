@@ -54,6 +54,7 @@ class LocationSearchTable : UITableViewController, UISearchResultsUpdating {
                 self.filteredBuildings = self.allBuildings
                 
                 DispatchQueue.main.async {
+                    // load the table view with all the buildings
                     self.tableView.reloadData()
                 }
             } catch let jsonErr {
