@@ -20,6 +20,7 @@
 		57CB9EB520435D3900926FEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9EB420435D3900926FEC /* MapViewController.swift */; };
 		57FAAAD820448885005AD32A /* AnnotationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FAAAD720448885005AD32A /* AnnotationPin.swift */; };
 		57FAAADA2044BA6C005AD32A /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */; };
+		57FBF1B92089E32400F6064B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBF1B82089E32400F6064B /* TableViewController.swift */; };
 		714FC590C05AD14AAADFC624 /* Pods_GIT_SITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68D66E17F3BFE889EE0FBBCF /* Pods_GIT_SITTests.framework */; };
 		8DAC736B3899235EC91C20F1 /* Pods_GIT_SIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458EFE5C5F54DF71670886F2 /* Pods_GIT_SIT.framework */; };
 		8FA5D734C85D7984CB302589 /* Pods_GIT_SITUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C29D66A2E0110AD47800009 /* Pods_GIT_SITUITests.framework */; };
@@ -66,6 +67,7 @@
 		57CB9EB420435D3900926FEC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		57FAAAD720448885005AD32A /* AnnotationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPin.swift; sourceTree = "<group>"; };
 		57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		57FBF1B82089E32400F6064B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		64DFD088A6998CFD65A4A2BC /* Pods-GIT SITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIT SITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GIT SITTests/Pods-GIT SITTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68D66E17F3BFE889EE0FBBCF /* Pods_GIT_SITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GIT_SITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9700F0FAA9EC39A365D177BE /* Pods-GIT SIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIT SIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GIT SIT/Pods-GIT SIT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */,
 				5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */,
 				57781D2E207F4D070050841B /* GraphController.swift */,
+				57FBF1B82089E32400F6064B /* TableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				57CB9E822043388700926FEC /* AppDelegate.swift in Sources */,
 				57CB9EB520435D3900926FEC /* MapViewController.swift in Sources */,
 				57781D2F207F4D070050841B /* GraphController.swift in Sources */,
+				57FBF1B92089E32400F6064B /* TableViewController.swift in Sources */,
 				5792B0BE206C2E9A0046C9D0 /* BuildingInfoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

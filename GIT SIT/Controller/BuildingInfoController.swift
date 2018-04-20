@@ -21,18 +21,18 @@ class BuildingInfoController: UIViewController {
     @IBOutlet weak var building_name: UILabel!
     @IBOutlet weak var building_address: UILabel!
     var b_id = String()
-    var building = [Building()]
+    var building = Building()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(building[0].name!)
-        building_name.text = building[0].name!
-        building_address.text = building[0].address!
-        getbuildingOccupancyFromAPiFloor1(b_id: b_id)
-        getbuildingOccupancyFromAPiFloor2(b_id: b_id)
-        getbuildingOccupancyFromAPiFloor3(b_id: b_id)
-        getbuildingOccupancyFromAPiFloor4(b_id: b_id)
-        getbuildingOccupancyFromAPiFloor5(b_id: b_id)
+//        print(building[0].name!)
+        building_name.text = building.name!
+        building_address.text = building.address!
+//        getbuildingOccupancyFromAPiFloor1(b_id: b_id)
+//        getbuildingOccupancyFromAPiFloor2(b_id: b_id)
+//        getbuildingOccupancyFromAPiFloor3(b_id: b_id)
+//        getbuildingOccupancyFromAPiFloor4(b_id: b_id)
+//        getbuildingOccupancyFromAPiFloor5(b_id: b_id)
         
 
         // Do any additional setup after loading the view.

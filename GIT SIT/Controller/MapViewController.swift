@@ -177,7 +177,7 @@ extension MapViewController: MKMapViewDelegate {
         
         let listOfProductsViewController = segue.destination as! BuildingInfoController
         listOfProductsViewController.b_id = building_id
-        listOfProductsViewController.building = [selectedPin] as! [Building]
+//        listOfProductsViewController.building = [selectedPin] as! [Building]
     }
 
 }
