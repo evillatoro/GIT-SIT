@@ -10,29 +10,40 @@ import UIKit
 import Charts
 
 class GraphController: UIViewController {
+    
+    let dailyCount = 24
+    let weeklyCount = 7
 
     @IBOutlet weak var lineChartView: LineChartView!
     @IBAction func randomize(_ sender: UIButton) {
-//        let count = Int(arc4random_uniform(20) + 3) // 0 - 20 + 3
-        let count = 7
-        setChartValues(count)
+        setChartValues(dailyCount)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setChartValues()
-        getDataFromApi()
-        setUpChart()
+        
+        lineChartView.legend.enabled = false
+        lineChartView.chartDescription?.text = ""
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+        setUpChartHourly()
         // Do any additional setup after loading the view.
     }
     
-    // chart first loads will have 20 items in it
-    func setChartValues(_ count: Int = 7) {
-        let values = (0..<count).map { (i) -> ChartDataEntry in
-            let val = Int(arc4random_uniform(24) + 30)
+    
+    @IBAction func dailyButton(_ sender: UIButton) {
+        setUpChartHourly()
+    }
+    @IBAction func weeklyButton(_ sender: UIButton) {
+        setUpChartWeekly()
+    }
+    
+    // chart first loads will have 24 items in it
+    func setChartValues(_ count: Int) {
+        var values = (0..<count).map { (i) -> ChartDataEntry in
+            let val = Int(arc4random_uniform(24) + 15)
             return ChartDataEntry(x: Double(i), y: Double(val))
         }
-        
-//        values.append(ChartDataEntry()
+        values.append(ChartDataEntry(x: 0, y: 50))
         
         let set1 = LineChartDataSet(values: values, label: "")
         let data = LineChartData(dataSet: set1)
@@ -40,49 +51,29 @@ class GraphController: UIViewController {
         self.lineChartView.data = data
     }
     
-    func getDataFromApi() {
-        let json: [String: Any] = ["location-id": "076",
-                                   "floor": "1"]
-        
-        let url = URL(string: "https://git-sit.herokuapp.com/get-next-week-occupancy")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)!
-            print("responseString = \(responseString)")
-            let cool = responseString.data(using: .utf8)!
-            do {
-                if let jsonArray = try JSONSerialization.jsonObject(with: cool, options : .allowFragments) as? [Dictionary<String,Any>]
-                {
-                    print(jsonArray)
-                } else {
-                    print("bad json")
-                }
-            } catch let error as NSError {
-                print(error)
-            }
+    func setUpChartHourly() {
+        var hours = [String()]
+        for i in 1...24 {
+            hours.append(String(i))
         }
-        task.resume()
+        setChartValues(dailyCount)
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: hours)
+        lineChartView.xAxis.granularity = 1
+        
+        // refresh chart
+        lineChartView.notifyDataSetChanged()
     }
     
-    func setUpChart() {
-        let months = ["4/13", "4/14", "4/15", "4/16", "4/17", "4/18", "4/19"]
+    func setUpChartWeekly() {
+        let months = ["4/17", "4/18", "4/19", "4/20", "4/21", "4/22", "4/23"]
         lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
         lineChartView.xAxis.granularity = 1
+        
+        setChartValues(weeklyCount)
+        
+        // refresh chart
+        lineChartView.notifyDataSetChanged()
     }
-
 }
 
 class ChartXAxisFormatter: NSObject {

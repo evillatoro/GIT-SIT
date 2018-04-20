@@ -29,7 +29,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UISearchBarDel
         
         searchBar.delegate = self
         
-//        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.returnKeyType = UIReturnKeyType.done
         
         getBuildingsFromApi()
 
@@ -52,7 +52,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UISearchBarDel
                 let decoder = JSONDecoder()
                 
                 // put try because .decode could throw a potential error
-                self.allBuildings = try decoder.decode([Building].self, from: data)
+                let buildingsFromApi = try decoder.decode([Building].self, from: data)
+                
+                for building in buildingsFromApi {
+                    let b_id = building.b_id
+                    
+                    if (b_id == "166" || b_id == "77" || b_id == "114" || b_id == "153" || b_id == "50" || b_id == "76" || b_id == "160") {
+                        self.allBuildings.append(building)
+                    }
+                }
                 
                 DispatchQueue.main.async {
                     // load the table view with all the buildings
@@ -65,6 +73,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UISearchBarDel
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        // closes keyboard if search text turned empty or nil
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             
@@ -91,6 +101,11 @@ class TableViewController: UIViewController, UITableViewDelegate, UISearchBarDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let buildingInfoController = segue.destination as! BuildingInfoController
         buildingInfoController.building = buildingSelected
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        view.endEditing(true)
     }
 }
 

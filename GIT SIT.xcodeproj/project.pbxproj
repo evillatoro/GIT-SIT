@@ -17,9 +17,6 @@
 		57CB9E972043389000926FEC /* GIT_SITTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9E962043389000926FEC /* GIT_SITTests.swift */; };
 		57CB9EA22043389100926FEC /* GIT_SITUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9EA12043389100926FEC /* GIT_SITUITests.swift */; };
 		57CB9EB320433D4B00926FEC /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9EB220433D4B00926FEC /* Building.swift */; };
-		57CB9EB520435D3900926FEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB9EB420435D3900926FEC /* MapViewController.swift */; };
-		57FAAAD820448885005AD32A /* AnnotationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FAAAD720448885005AD32A /* AnnotationPin.swift */; };
-		57FAAADA2044BA6C005AD32A /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */; };
 		57FBF1B92089E32400F6064B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBF1B82089E32400F6064B /* TableViewController.swift */; };
 		714FC590C05AD14AAADFC624 /* Pods_GIT_SITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68D66E17F3BFE889EE0FBBCF /* Pods_GIT_SITTests.framework */; };
 		8DAC736B3899235EC91C20F1 /* Pods_GIT_SIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458EFE5C5F54DF71670886F2 /* Pods_GIT_SIT.framework */; };
@@ -64,9 +61,6 @@
 		57CB9EA12043389100926FEC /* GIT_SITUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIT_SITUITests.swift; sourceTree = "<group>"; };
 		57CB9EA32043389100926FEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57CB9EB220433D4B00926FEC /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
-		57CB9EB420435D3900926FEC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		57FAAAD720448885005AD32A /* AnnotationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationPin.swift; sourceTree = "<group>"; };
-		57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		57FBF1B82089E32400F6064B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		64DFD088A6998CFD65A4A2BC /* Pods-GIT SITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GIT SITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GIT SITTests/Pods-GIT SITTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68D66E17F3BFE889EE0FBBCF /* Pods_GIT_SITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GIT_SITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				57CB9EB220433D4B00926FEC /* Building.swift */,
-				57FAAAD720448885005AD32A /* AnnotationPin.swift */,
 				57715654207ADE4E002E45F6 /* Occupancy.swift */,
 			);
 			path = Model;
@@ -178,8 +171,6 @@
 		57CB9EB1204339C800926FEC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				57CB9EB420435D3900926FEC /* MapViewController.swift */,
-				57FAAAD92044BA6C005AD32A /* LocationSearchTable.swift */,
 				5792B0BD206C2E9A0046C9D0 /* BuildingInfoController.swift */,
 				57781D2E207F4D070050841B /* GraphController.swift */,
 				57FBF1B82089E32400F6064B /* TableViewController.swift */,
@@ -422,10 +413,7 @@
 			files = (
 				57CB9EB320433D4B00926FEC /* Building.swift in Sources */,
 				57715655207ADE4E002E45F6 /* Occupancy.swift in Sources */,
-				57FAAAD820448885005AD32A /* AnnotationPin.swift in Sources */,
-				57FAAADA2044BA6C005AD32A /* LocationSearchTable.swift in Sources */,
 				57CB9E822043388700926FEC /* AppDelegate.swift in Sources */,
-				57CB9EB520435D3900926FEC /* MapViewController.swift in Sources */,
 				57781D2F207F4D070050841B /* GraphController.swift in Sources */,
 				57FBF1B92089E32400F6064B /* TableViewController.swift in Sources */,
 				5792B0BE206C2E9A0046C9D0 /* BuildingInfoController.swift in Sources */,

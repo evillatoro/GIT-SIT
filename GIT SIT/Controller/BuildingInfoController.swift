@@ -20,19 +20,24 @@ class BuildingInfoController: UIViewController {
     @IBOutlet weak var floor5: UILabel!
     @IBOutlet weak var building_name: UILabel!
     @IBOutlet weak var building_address: UILabel!
-    var b_id = String()
     var building = Building()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(building[0].name!)
+        
+        self.title = "Current Occupancy"
         building_name.text = building.name!
         building_address.text = building.address!
-//        getbuildingOccupancyFromAPiFloor1(b_id: b_id)
-//        getbuildingOccupancyFromAPiFloor2(b_id: b_id)
-//        getbuildingOccupancyFromAPiFloor3(b_id: b_id)
-//        getbuildingOccupancyFromAPiFloor4(b_id: b_id)
-//        getbuildingOccupancyFromAPiFloor5(b_id: b_id)
+        var b_id = building.b_id!
+        print("building id \(b_id)")
+        if (b_id.count == 2) {
+            b_id = "0" + b_id
+        }
+        getbuildingOccupancyFromAPiFloor1(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor2(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor3(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor4(b_id: b_id)
+        getbuildingOccupancyFromAPiFloor5(b_id: b_id)
         
 
         // Do any additional setup after loading the view.
@@ -43,29 +48,11 @@ class BuildingInfoController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func getBuildingInfoFromApi(b_id: String) {
-//        print(b_id)
-//                let jsonUrlString = "https://m.gatech.edu/api/gtplaces/buildings_id/\(b_id)"
-//                guard let url = URL(string: jsonUrlString) else { return }
-//
-//                URLSession.shared.dataTask(with: url) { (data, response, err) in
-//                    guard let data = data else { return }
-//
-//                    do {
-//
-//                        let decoder = JSONDecoder()
-//
-//                        // put try because .decode could throw a potential error
-//                        self.building = try decoder.decode([Building].self, from: data)
-//
-//                        DispatchQueue.main.async {
-//                            print(self.building[0].name)
-//                        }
-//                    } catch let jsonErr {
-//                        print("Error serializing json:", jsonErr, "\n")
-//                    }
-//                    }.resume()
-//    }
+    func convertToDictionary(from text: String) throws -> [String: Int] {
+        guard let data = text.data(using: .utf8) else { return [:] }
+        let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [])
+        return anyResult as? [String: Int] ?? [:]
+    }
     
     func getbuildingOccupancyFromAPiFloor1(b_id: String) {
         let json: [String: Any] = ["location-id": b_id,
@@ -96,7 +83,11 @@ class BuildingInfoController: UIViewController {
             if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
                 print(occupancy);
                 DispatchQueue.main.async {
-                    self.floor1.text = String(occupancy) + "/50"
+                    if (occupancy == 0 || occupancy > 1000) {
+                        self.floor1.text = "N/A"
+                    } else {
+                        self.floor1.text = String(occupancy) + "/50"
+                    }
                 }
             }
         }
@@ -131,7 +122,11 @@ class BuildingInfoController: UIViewController {
             if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
                 print(occupancy);
                 DispatchQueue.main.async {
-                    self.floor2.text = String(occupancy) + "/250"
+                    if (occupancy == 0 || occupancy > 1000) {
+                        self.floor2.text = "N/A"
+                    } else {
+                        self.floor2.text = String(occupancy) + "/250"
+                    }
                 }
             }
         }
@@ -165,7 +160,11 @@ class BuildingInfoController: UIViewController {
             if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
                 print(occupancy);
                 DispatchQueue.main.async {
-                    self.floor3.text = String(occupancy) + "/200"
+                    if (occupancy == 0 || occupancy > 1000) {
+                        self.floor3.text = "N/A"
+                    } else {
+                        self.floor3.text = String(occupancy) + "/200"
+                    }
                 }
             }
         }
@@ -195,11 +194,15 @@ class BuildingInfoController: UIViewController {
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
+//            print("responseString = \(responseString)")
             if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                print(occupancy);
+//                print(occupancy);
                 DispatchQueue.main.async {
-                    self.floor4.text = String(occupancy) + "/160"
+                    if (occupancy == 0 || occupancy > 1000) {
+                        self.floor4.text = "N/A"
+                    } else {
+                        self.floor4.text = String(occupancy) + "/160"
+                    }
                 }
             }
         }
@@ -233,7 +236,11 @@ class BuildingInfoController: UIViewController {
             if let occupancy = Int(responseString!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
                 print(occupancy);
                 DispatchQueue.main.async {
-                    self.floor5.text = String(occupancy) + "/75"
+                    if (occupancy == 0 || occupancy > 1000) {
+                        self.floor5.text = "N/A"
+                    } else {
+                        self.floor5.text = String(occupancy) + "/75"
+                    }
                 }
             }
         }
